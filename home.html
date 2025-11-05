@@ -1,0 +1,348 @@
+<!--
+Unique E-Design Portfolio Template
+File: elegant_portfolio.html
+
+How to use:
+- Place this file inside your Flask `templates/` folder as `layout_portfolio.html` (or copy sections into your existing templates).
+- Replace placeholders like {{ url_for('static', filename='images/your_photo.jpg') }} with your actual image or keep the Flask url_for expression if used with Flask.
+- The contact form posts to /contact (Flask route). The small JS sends the form using fetch and shows success message.
+- This is a single-file responsive template with embedded CSS and JS for easy copy-paste.
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Anirudh — Portfolio</title>
+
+  <style>
+    :root {
+      --bg:#0f1724;
+      --glass: rgba(255,255,255,0.06);
+      --accent1: #7C3AED;
+      --accent2: #06B6D4;
+      --muted: #9CA3AF;
+      --card: rgba(255,255,255,0.03);
+      --max-width:1100px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.14), transparent 5%),
+                  radial-gradient(900px 400px at 90% 90%, rgba(6,182,212,0.08), transparent 8%),
+                  var(--bg);
+      color:#E6EEF2;
+      font-family:Inter,Segoe UI,system-ui;
+      padding:40px 18px;
+      line-height:1.45;
+    }
+
+    .container{max-width:var(--max-width);margin:0 auto}
+    header{display:flex;align-items:center;justify-content:space-between;padding:5px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--accent1),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:700;box-shadow:0 6px 18px rgba(2,6,23,0.6)}
+    .brand h1{font-size:24px}
+    nav a{color:var(--muted);margin-left:18px;text-decoration:none;font-weight:600}
+    nav a:hover{color:var(--accent2)}
+
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:34px;align-items:center;padding:28px 0}
+    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));border-radius:14px;padding:28px;backdrop-filter: blur(6px);box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+    .hero h2{font-size:28px;margin-bottom:8px}
+    .tag{color:var(--accent1);font-weight:700}
+    .lead{color:var(--muted);margin-bottom:16px}
+    .cta{display:inline-block;margin-top:12px;padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,var(--accent2),var(--accent1));color:#032;font-weight:700;text-decoration:none}
+
+    .profile{display:flex;flex-direction:column;align-items:center;gap:12px}
+    .profile img{width:280px;height:280px;object-fit:cover;border-radius:22px;border:4px solid rgba(255,255,255,0.04)}
+    .profile .bio{color:var(--muted);text-align:center}
+
+    section h3{margin:18px 0;font-size:20px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:var(--card);padding:16px;border-radius:12px;transition:transform .28s ease, box-shadow .28s ease}
+    .card:hover{transform:translateY(-8px);box-shadow:0 20px 35px rgba(2,6,23,0.65)}
+    .card img{width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:10px}
+    .card h4{font-size:16px}
+    .card p{font-size:13px;color:var(--muted);margin-top:6px}
+
+    footer {
+        margin-top: 40px;
+        padding: 15px;
+        font-size: 14px;
+        color: #aaa;
+        position: relative;
+    }
+    footer nav a {
+        margin-left: 12px;
+    }
+
+    /* --- Contact Section Styling --- */
+    .contact-section {
+      min-height: 80vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 20px;
+      background: radial-gradient(600px 400px at 80% 30%, rgba(124,58,237,0.1), transparent 50%);
+    }
+
+    .contact-container {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border-radius: 18px;
+      padding: 40px 50px;
+      box-shadow: 0 8px 25px rgba(2,6,23,0.6);
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .contact-container h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: #fff;
+    }
+
+    .contact-form .form-group {
+      margin-bottom: 18px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: none;
+      outline: none;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      font-size: 1rem;
+      transition: 0.3s ease;
+    }
+
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder {
+      color: #aaa;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 0 0 2px var(--accent2);
+    }
+
+    .contact-form .btn {
+      width: 100%;
+      background: linear-gradient(90deg, var(--accent2), var(--accent1));
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 0;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    .contact-form .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(124, 58, 237, 0.4);
+    }
+
+
+    @keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-card {
+  animation: fadeUp 0.8s ease forwards;
+}
+    
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <!-- <div class="logo">AC</div> -->
+        <div>
+          <h1>Anirudh Choudhary</h1>
+          <div style="font-size:15px;color:#aaa">Law • Tech • Research</div>
+        </div>
+      </div>
+      <!-- Navigation Links -->
+      <nav style="position:absolute; top:20px; right:20px;">
+        <!-- <a href="/">Home</a>
+        <a href="/blog">Blog</a>
+        <a href="internship.html">Internship Experience</a> -->
+        <a href="{{ url_for('home.html') }}">Home</a>
+        <a href="{{ url_for('internship.html') }}">Blog</a>
+        <a href="{{ url_for('internship.html') }}">Internship Experience</a>
+
+      </nav>
+</header>
+
+    </header>
+
+    <section class="hero">
+      <div class="hero-card">
+        <h2>Building bridges between law & technology <span class="tag">AI • Policy • Research</span></h2>
+        <p class="lead">I’m a law student passionate about research, policy, and leveraging technology to simplify complex legal systems.I’m a law student passionate about the intersection of technology, policy, and ethics. My work explores how emerging technologies like Artificial Intelligence challenge existing legal frameworks and demand new approaches to governance. I aim to contribute to developing responsible, human-centered tech policies that balance innovation with accountability.</p>
+        <!-- <a class="cta" href="#projects">View My Work</a> -->
+      </div>
+
+      <aside class="profile">
+        <img src="{{ url_for('static', filename='Images/Anirudh.jpg') }}" alt="Profile Photo">
+        <div class="hero-card bio" style="max-width:320px">
+          <strong>Hello, I’m Anirudh</strong>
+          <p class="bio">Currently an undergraduate student pursuing a B.S. LL.B. degree from NLU Meg, which provides a comprehensive 
+foundation in legal studies along with an introduction to various aspects of law in practice. My academic 
+journey so far has given me exposure to legislative drafting, advocacy, and public policy, helping me 
+understand how legal frameworks interact with governance and society.</p>
+          <div style="display:flex;gap:8px;justify-content:center">
+            <a class="cta" href="{{ url_for('static', filename='Document/CV - AnirudhChoudhary.pdf') }}">Download CV</a>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- PROJECTS
+    <section id="projects">
+      <h3>Selected Projects</h3>
+      <div class="grid">
+        <article class="card">
+          <img src="{{ url_for('static', filename='images/project1.jpg') }}" alt="Project 1">
+          <h4>Project Alpha — Legal Research Tool</h4>
+          <p>Searchable annotated judgments with AI summarisation and citation extraction.</p>
+        </article>
+
+        <article class="card">
+          <img src="{{ url_for('static', filename='images/project2.jpg') }}" alt="Project 2">
+          <h4>FixFast — Repair Booking Prototype</h4>
+          <p>User flows, negotiation UI, and cost estimation microservice.</p>
+        </article>
+
+        <article class="card">
+          <img src="{{ url_for('static', filename='images/project3.jpg') }}" alt="Project 3">
+          <h4>Policy Brief — AI & Due Process</h4>
+          <p>Publication-ready brief on algorithmic accountability in administrative law.</p>
+        </article>
+      </div>
+    </section> -->
+
+    <!-- SKILLS & TIMELINE -->
+    <!-- <section style="margin-top:26px">
+      <div class="two-col">
+        <div class="skill">
+          <div class="label">Skills</div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <span style="padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.03);font-weight:600">Python</span>
+            <span style="padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.03);font-weight:600">Flask</span>
+            <span style="padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.03);font-weight:600">Django</span>
+            <span style="padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.03);font-weight:600">Research</span>
+            <span style="padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.03);font-weight:600">Legal Writing</span>
+          </div>
+
+          <div style="margin-top:14px">
+            <div class="label">Proficiency</div>
+            <div class="bar"><i style="width:86%"></i></div>
+            <div style="height:8px"></div>
+            <div class="bar"><i style="width:72%"></i></div>
+          </div>
+        </div>
+
+    </section> -->
+
+<section id="contact" class="contact-section">
+  <div class="contact-container">
+    <h2>Get in Touch</h2>
+    <form action="{{ url_for('contact') }}" method="POST" class="contact-form">
+      <div class="form-group">
+        <input type="text" name="name" placeholder="Your Name" required>
+      </div>
+      <div class="form-group">
+        <input type="email" name="email" placeholder="Your Email" required>
+      </div>
+      <div class="form-group">
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      </div>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+  </div>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+            alert("Message sent successfully!");
+          });
+        </script>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+</section>
+
+
+
+    <footer>
+    &copy; 2025 Anirudh
+    <nav style="position:absolute; bottom:5px; left:50%; transform:translateX(-50%); display:flex; gap:20px; align-items:center;">
+        <a href="https://linkedin.com/in/yourprofile" target="_blank">
+            <img src="{{ url_for('static', filename='Images/Linkedin.png') }}" style="width:24px; height:24px;">
+        </a>
+        <a href="https://www.instagram.com/anirudhchoudhary305/" target="_blank">
+            <img src="{{ url_for('static', filename='Images/Instagram.png') }}" style="width:24px; height:24px;">
+        </a>
+        <a href="https://wa.me/916367681854" target="_blank">
+            <img src="{{ url_for('static', filename='Images/Whatsapp.png') }}" style="width:24px; height:24px;">
+        </a>
+    </nav>
+</footer>
+
+  </div>
+
+  <script>
+    // keyboard shortcut: Ctrl+K -> scroll to contact
+    document.addEventListener('keydown', (e)=>{
+      if(e.ctrlKey && e.key.toLowerCase()==='k'){
+        const el = document.getElementById('contact');
+        if(el) el.scrollIntoView({behavior:'smooth'});
+      }
+    });
+
+    // contact form: send via fetch to /contact (Flask route)
+const form = document.getElementById('contactForm');
+form.addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+    const data = new FormData(form);
+
+    try {
+        const res = await fetch('/', { method: 'POST', body: data }); // <-- changed to '/'
+        if (res.ok) {
+            const t = document.getElementById('toast');
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 3000);
+            form.reset();
+        } else {
+            alert('Something went wrong — please try again');
+        }
+    } catch (err) {
+        console.error(err);
+        alert('Network error');
+    }
+});
+
+
+  </script>
+</body>
+</html>

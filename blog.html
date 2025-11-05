@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anirudh Choudhary | Blog</title>
+  <style>
+    :root {
+      --bg: #0b0f1a;
+      --fg: #dcdcdc;
+      --muted: #aaa;
+      --accent: #00bcd4;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg);
+      color: var(--fg);
+    }
+
+    /* ---------- HEADER ---------- */
+    header {
+      background-color: #0f1724;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 50px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+      gap: 15px;
+    }
+
+    .brand img {
+      width: 52px;
+      height: 52px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .brand p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      margin-left: 30px;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    /* ---------- MAIN CONTENT ---------- */
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+      text-align: left;
+    }
+
+    h1 {
+      font-size: 22px;
+      color: var(--fg);
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .blog-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .blog-item {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 12px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .blog-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .blog-item h2 {
+      color: var(--accent);
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .blog-item a {
+      text-decoration: none;
+      color: #8a2be2;
+      font-weight: 500;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    
+    .section-title {font-size: 28px;
+        font-weight: 700;
+        background: linear-gradient(90deg, #8a2be2, #a855f7);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        display: inline-block;
+        position: relative;
+        margin-bottom: 40px;
+    }
+
+    .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -6px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: #00bcd4;
+        border-radius: 3px;
+    }
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <a href="/" class="brand">
+      <img src="{{ url_for('static', filename='Images/Anirudh.jpg') }}" alt="Profile photo">
+      <div>
+        <h1>Anirudh Choudhary</h1>
+        <p>Law • Tech • Research</p>
+      </div>
+    </a>
+
+    <nav>
+      <a href="{{ url_for('home.html') }}">Home</a>
+      <a href="{{ url_for('blog.html') }}">Blog</a>
+      <a href="{{ url_for('internship.html') }}">Internship Experience</a>
+    </nav>
+  </header>
+
+    <main>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internship Experience | Anirudh Choudhary</title>
+    <h1 class="section-title">My Research & Blog Posts</h1>
+
+
+    <div class="blog-list">
+        {% for blog in blogs %}
+        <div class="blog-item">
+            <h2>{{ blog.name }}</h2>
+            <a href="{{ blog.url }}" target="_blank">View 📄</a>
+        </div>
+        {% endfor %}
+    </div>
+    </main>
+
+
+    <footer>
+        &copy; 2025 Anirudh
+            <nav style="
+        position:absolute;
+        bottom:40px;
+        left:50%;
+        transform:translateX(-50%);
+        display:flex;
+        gap:20px;
+        align-items:center;
+    ">
+            <a href="https://linkedin.com/in/yourprofile" target="_blank">
+                <img src="static\Images\Linkedin.png" style="width:24px; height:24px;">
+
+            <a href="https://www.instagram.com/anirudhchoudhary305/" target="_blank">
+                <img src="static\Images\Instagram.png" style="width:24px; height:24px;">
+
+            <a href="https://wa.me/916367681854" target="_blank">
+                <img src="static\Images\Whatsapp.png" style="width:24px; height:24px;">
+        </nav>
+    </footer>
+</body>
+</html>
+
+

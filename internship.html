@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internship Experience | Anirudh Choudhary</title>
+
+    <!-- Font (matches main site aesthetic) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+          --bg-color: #0b1220;
+          --card-bg: rgba(255, 255, 255, 0.05);
+          --text-color: #e6e6e6;
+          --muted: #aaa;
+          --accent1: #8b5cf6; /* violet */
+          --accent2: #06b6d4; /* cyan */
+        }
+
+        body {
+          font-family: 'Inter', Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+          background-color: var(--bg-color);
+          color: var(--text-color);
+          line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 18px 40px;
+          background: rgba(255, 255, 255, 0.03);
+          backdrop-filter: blur(10px);
+          box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+          position: sticky;
+          top: 0;
+          z-index: 10;
+          border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .brand {
+          display: flex;
+          align-items: center;
+          text-decoration: none;
+          color: var(--text-color);
+        }
+
+        .brand .logo img {
+          width: 50px;
+          height: 50px;
+          border-radius: 10px;
+          margin-right: 12px;
+        }
+
+        .brand h1 {
+          font-size: 20px;
+          margin: 0;
+        }
+
+        .brand div:last-child {
+          font-size: 12px;
+          color: var(--muted);
+        }
+
+        /* Navbar */
+        nav a {
+          text-decoration: none;
+          color: var(--muted);
+          margin-left: 20px;
+          font-weight: 600;
+          transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+          color: var(--accent2);
+        }
+
+        /* Content */
+        .content {
+          max-width: 900px;
+          margin: 60px auto;
+          padding: 0 20px;
+        }
+
+        h2 {
+          color: var(--accent1);
+          border-bottom: 3px solid var(--accent2);
+          display: inline-block;
+          padding-bottom: 5px;
+          margin-bottom: 30px;
+          font-size: 1.8rem;
+        }
+
+        /* Internship Cards */
+        .internship {
+          background: var(--card-bg);
+          padding: 20px 25px;
+          border-radius: 16px;
+          margin-bottom: 25px;
+          box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .internship:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+        }
+
+        .internship h3 {
+          color: var(--accent2);
+          margin-bottom: 10px;
+        }
+
+        .internship ul {
+          margin: 0;
+          padding-left: 20px;
+        }
+
+        .internship li {
+          margin-bottom: 6px;
+        }
+
+        /* Footer */
+        footer {
+          text-align: center;
+          padding: 40px 0 80px;
+          color: var(--muted);
+          font-size: 0.9rem;
+          position: relative;
+        }
+
+        footer nav {
+          position: absolute;
+          bottom: 30px;
+          left: 50%;
+          transform: translateX(-50%);
+          display: flex;
+          gap: 20px;
+          align-items: center;
+        }
+
+        footer nav img {
+          width: 24px;
+          height: 24px;
+          opacity: 0.8;
+          transition: opacity 0.3s ease;
+        }
+
+        footer nav img:hover {
+          opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="/" class="brand">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='Images/Anirudh.jpg') }}" alt="Anirudh Logo">
+            </div>
+            <div>
+                <h1>Anirudh Choudhary</h1>
+                <div>Law • Tech • Research</div>
+            </div>
+        </a>
+
+        <nav>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('blog') }}">Blog</a>
+            <a href="{{ url_for('internship') }}">Internship Experience</a>
+        </nav>
+    </header>
+
+    <div class="content">
+        <h2>Internship Experience</h2>
+
+        <div class="internship">
+            <h3>NITI Aayog (June 2025, 1 Month)</h3>
+            <ul>
+                <li>Conducted research on the Blue Economy and environmental conflicts.</li>
+                <li>Analysed Supreme Court judgments on the Enforcement Directorate and language rights in local governance.</li>
+                <li>Contributed to a cybersecurity policy brief integrating the DPDP Act, IT Act, and CERT-In frameworks.</li>
+            </ul>
+        </div>
+
+        <div class="internship">
+            <h3>Adv. Abhishek Tawri, District & Sessions Court, Churu (Raj) (Feb 2025, 1 Month)</h3>
+            <ul>
+                <li>Understanding courtroom procedures and etiquette.</li>
+                <li>Practical application of legal knowledge, client interaction, and counselling.</li>
+                <li>Time management, local legal culture, and realities of legal practice.</li>
+            </ul>
+        </div>
+
+        <div class="internship">
+            <h3>Ministry of Law and Justice (Jan 2025, 1 Month)</h3>
+            <ul>
+                <li>Assisted in drafting and vetting legislative texts, including bills, ordinances, and regulatory frameworks.</li>
+                <li>Gained hands-on experience in legislative drafting, statutory interpretation, and public policy analysis under senior legislative counsels.</li>
+            </ul>
+        </div>
+
+        <div class="internship">
+            <h3>Ministry of Commerce & Industry (Jan 2025, 1 Month)</h3>
+            <ul>
+                <li>Assisted in Trade Policy Research, Data Analysis, Comparative Studies.</li>
+                <li>Prepared Policy Recommendations, Reports, and Briefs.</li>
+            </ul>
+        </div>
+
+        <div class="internship">
+            <h3>Department for Promotion of Industry and Internal Trade (Feb 2024, 1 Month)</h3>
+            <ul>
+                <li>Assisted in Human Rights Law Research, Fact-finding, Policy Analysis, Documentation, Awareness Campaigns, and Report Writing.</li>
+            </ul>
+        </div>
+
+        <div class="internship">
+            <h3>Adv. Vijay Kaswan, District & Sessions Court, Churu (Raj) (Jan 2024 – Present)</h3>
+            <ul>
+                <li>Case law research and statutory research.</li>
+                <li>Filing different forms, case preparation, observing court proceedings.</li>
+            </ul>
+        </div>
+
+        <div class="internship">
+            <h3>Project Intern at LIDSS by NLU Meghalaya & IIT Kharagpur</h3>
+            <ul>
+                <li>Assisting in developing a legal-tech platform integrating law and data science.</li>
+            </ul>
+        </div>
+
+        <div class="internship">
+            <h3>People’s Union for Civil Liberties (PUCL)</h3>
+            <ul>
+                <li>Assisted in Human Right Law Research, Fact-finding, Policy Analysis, Documentation, Awareness Campaigns, Report Writing.</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2025 Anirudh
+        <nav>
+            <a href="https://linkedin.com/in/yourprofile" target="_blank">
+                <img src="static/Images/Linkedin.png" alt="LinkedIn">
+            </a>
+            <a href="https://www.instagram.com/anirudhchoudhary305/" target="_blank">
+                <img src="static/Images/Instagram.png" alt="Instagram">
+            </a>
+            <a href="https://wa.me/916367681854" target="_blank">
+                <img src="static/Images/Whatsapp.png" alt="WhatsApp">
+            </a>
+        </nav>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anirudh Choudhary | Portfolio</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1e1e2f, #2b2b4f);
+            color: white;
+            text-align: center;
+        }
+        header {
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #8a2be2, #00bcd4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            box-shadow: 0 6px 18px rgba(2,6,23,0.6);
+        }
+        nav a {
+            color: #ddd;
+            margin-left: 18px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        nav a:hover {
+            color: #00bcd4;
+        }
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 3px solid #00bcd4;
+            margin-top: 20px;
+            object-fit: cover;
+            box-shadow: 0 0 15px rgba(0, 188, 212, 0.5);
+        }
+        h1 {
+            font-size: 32px;
+            margin-top: 10px;
+        }
+        h2 {
+            color: #00bcd4;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        p {
+            font-size: 16px;
+            color: #ddd;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 24px;
+            background: linear-gradient(90deg, #8a2be2, #00bcd4);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            opacity: 0.85;
+            transform: scale(1.05);
+        }
+        footer {
+            margin-top: 40px;
+            padding: 15px;
+            font-size: 14px;
+            color: #aaa;
+            letter-spacing: 0.5px;
+            position: relative;
+        }
+        footer nav a {
+            margin-left: 12px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="brand">
+            <div class="logo">AC</div>
+            <div>
+                <h1>Anirudh Choudhary</h1>
+                <div style="font-size:12px;color:#aaa">Law • Tech • Research</div>
+            </div>
+        </div>
+        <!-- Navigation Links -->
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog">Blog</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Profile Photo -->
+        <img src="{{ url_for('static', filename='Images/Anirudh.jpg') }}" alt="Profile Photo" class="profile-img">
+
+        <!-- Name and Bio -->
+        <h1>Anirudh Choudhary</h1>
+        <h2>Law Student | Researcher | AI & Technology Enthusiast</h2>
+        <p>President, Career Development Cell, NLU Meghalaya</p>
+
+        <!-- CV Button -->
+        <a href="{{ url_for('static', filename='Document/CV - AnirudhChoudhary.pdf') }}" class="btn" download>📄 Download My CV</a>
+
+        <!-- Quick Contact Hint -->
+        <p style="margin-top: 25px;">Press <b>Ctrl + K</b> to contact me quickly!</p>
+    </main>
+
+    <footer>
+        &copy; 2025 Anirudh Choudhary | Built with Flask 💻
+        <nav style="position:absolute; bottom:20px; right:20px;">
+            <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+            <a href="https://github.com/yourprofile" target="_blank">GitHub</a>
+            <a href="https://twitter.com/yourprofile" target="_blank">Twitter</a>
+        </nav>
+    </footer>
+</body>
+</html>
